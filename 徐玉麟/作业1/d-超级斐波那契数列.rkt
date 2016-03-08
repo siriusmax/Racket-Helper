@@ -1,0 +1,30 @@
+#lang racket
+(define initvalue -54321)
+(define result (make-vector 51 initvalue))
+(vector-set! result 0 1)
+(vector-set! result 1 1)
+(vector-set! result 2 1)
+(vector-set! result 3 1)
+(vector-set! result 4 1)
+
+(define (f n)
+  (define store (vector-ref result n))
+  (if(= store initvalue)
+     (begin
+       (set! store (+
+                    (f (- n 1))
+                    (* 4 (f (- n 2)))
+                    (* 5 (f (- n 3)))
+                    (* -2 (f (- n 4)) (f (- n 4)))
+                    (* (f (- n 5)) (f (- n 5)) (f (- n 5)))
+                    ))
+       (vector-set! result n store)
+       store)
+     store))
+
+(define (loop)
+  (define n (read))
+  (if(equal? n eof)
+     (void)
+     (begin (display (f n)) (newline) (loop))))
+(loop)
