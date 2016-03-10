@@ -26,5 +26,5 @@ And this folder is Luolc's code for course  *Functional Programming*, including 
 - [Test 2](./Test/2)
 	- [01.翻转一张表](./Test/2/01.rkt)
 	- [02.flat-map](./Test/2/02.rkt)
-	- {03.深度反转一棵树}(./Test/2/03.rkt)
+	- [03.深度反转一棵树](./Test/2/03.rkt)
 
