@@ -18,4 +18,13 @@ And this folder is Luolc's code for course  *Functional Programming*, including 
 	- [g.SICP EX 1.41](./Assignment/1/g.rkt)
 
 ## Other
+
 - [LoopWrapper](./Other/LoopWrapperDemo.rkt)
+
+## Test
+
+- [Test 2](./Test/2)
+	- [01.翻转一张表](./Test/2/01.rkt)
+	- [02.flat-map](./Test/2/02.rkt)
+	- {03.深度反转一棵树}(./Test/2/03.rkt)
+
