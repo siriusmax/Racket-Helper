@@ -27,6 +27,14 @@ And this folder is Luolc's code for course  *Functional Programming*, including 
 	- [07.flat-map](./Assignment/2/07.rkt)
 	- [08.深度反转一棵树](./Assignment/2/08.rkt)
 
+- [Assignment 3](./Assignment/3)
+	- [01.自定义car和cdr](./Assignment/3/01.rkt)
+	- [02.super-map](./Assignment/3/02.rkt)
+	- [03.pipeline](./Assignment/3/03.rkt)
+	- [04.SICP EX 2.36](./Assignment/3/04.rkt)
+	- [05.八皇后](./Assignment/3/05.rkt)
+	- [06.SICP EX 2.41](./Assignment/3/06.rkt)
+
 ## Other
 
 - [LoopWrapper](./Other/LoopWrapperDemo.rkt)
@@ -37,4 +45,9 @@ And this folder is Luolc's code for course  *Functional Programming*, including 
 	- [01.翻转一张表](./Test/2/01.rkt)
 	- [02.flat-map](./Test/2/02.rkt)
 	- [03.深度反转一棵树](./Test/2/03.rkt)
+
+- [Test 3](./Test/3)
+	- [01.自定义car和cdr](./Test/3/01.rkt)
+        - [02.super-map](./Test/3/02.rkt)
+        - [03.pipeline](./Test/3/03.rkt)
 
