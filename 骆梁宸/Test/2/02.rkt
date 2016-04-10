@@ -1,0 +1,32 @@
+#lang racket
+(define (for idx end fun)
+  (if (= idx end)
+      (void)
+      (begin (fun idx)
+             (for (+ 1 idx) end fun))))
+
+(define (flat lst)
+  (define ret (vector))
+  (define vec (list->vector lst))
+  (begin (if (empty? lst)
+             (void)
+             (for 0 (vector-length vec)
+               (lambda (idx)
+                 (if (list? (vector-ref vec idx))
+                     (set! ret (vector-append ret (flat (vector-ref vec idx))))
+                     (set! ret (vector-append ret (vector (vector-ref vec idx))))))
+               ))
+         ret
+         )
+  )
+
+(define (work)
+  (let ((l (read)))
+    (if (eq? l eof)
+        (void)
+        (begin (displayln (vector->list (flat l)))
+               (work)))
+    )
+  )
+
+(work)
