@@ -1,0 +1,35 @@
+练习 3.13
+============
+
+定义：
+
+.. literalinclude:: code/13-make-cycle.scm
+
+测试：
+
+::
+
+    1 ]=> (load "13-make-cycle.scm")
+
+    ;Loading "13-make-cycle.scm"... done
+    ;Value: make-cycle
+
+    1 ]=> (define z (make-cycle (list 'a 'b 'c)))
+
+    ;Value: z
+
+    1 ]=> z
+    
+    a b c a b c a b c a b c a b c ;...
+
+盒子图形：
+
+::
+            
+             +-----------------------+
+             |                       |
+             v                       |
+    z ----> [*]----> [*]----> [*]----+
+             |        |        |
+             v        v        v
+            'a       'b       'c
