@@ -1,0 +1,34 @@
+(define (rand-update x)
+  (define a 97)
+  (define b 103)
+  (define m 127)
+  (remainder (+ (* a x ) b) m))
+
+
+(define rand 
+  (let ((x 6))
+    (lambda ()
+      (set! x (rand-update x))
+      x)))
+
+(define (gcd m n)
+  (if (= n 0)
+      m
+      (gcd n (remainder m n))))
+
+(define (estimate-pi trials) ;trials is the trying times
+  (sqrt (/ 6 (monte-carlo trials cesaro-test))))
+
+(define (cesaro-test)
+  (= (gcd (rand) (rand)) 1))
+
+(define (monte-carlo trials experiment)
+  (define (iter trials-remaining trials-passed)
+    (cond ((= trials-remaining 0)
+           (/ trials-passed trials))
+          ((experiment) (iter (- trials-remaining 1) (+ trials-passed 1)))
+          (else (iter (- trials-remaining 1) trials-passed))))
+  (iter trials 0))
+
+(estimate-pi 553)
+  

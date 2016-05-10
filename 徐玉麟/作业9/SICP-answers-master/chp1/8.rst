@@ -1,0 +1,42 @@
+练习 1.8
+===============
+
+首先，将题目给定的算式 :math:`\frac{x/y^2+2y}{3}` 转换成前序表达式：
+
+::
+    
+    (/ (+ (/ x (square y)) (* 2 y))
+       3)
+
+然后将这个表达式应用到 ``improve`` 函数，再修改一下 ``sqrt`` 函数(书本 15 页)，就可以得出计算三次方根的函数 ``cube-root`` ：
+
+.. literalinclude:: code/8-cube-root.scm
+
+要注意 ``cube-root`` 和 ``sqrt`` 两个函数之间的细微区别，小心别把它们混淆了。
+
+因为 MIT Scheme 里没有计算立方的 ``cube`` 函数，所以需要自己写一个：
+
+.. literalinclude:: code/8-cube.scm
+
+最后，测试 ``cube-root`` 函数：
+
+::
+
+    1 ]=> (load "8-cube-root.scm")
+
+    ;Loading "8-cube-root.scm"...
+    ;  Loading "8-cube.scm"... done
+    ;... done
+    ;Value: improve
+
+    1 ]=> (cube-root (* 3 3 3))
+
+    ;Value: 3.0000005410641766
+
+    1 ]=> (cube-root (* 5 5 5))
+
+    ;Value: 5.000000000287929
+
+    1 ]=> (cube-root (* 7 7 7))
+
+    ;Value: 7.000001795382107

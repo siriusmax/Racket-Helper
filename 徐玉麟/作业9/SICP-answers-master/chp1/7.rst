@@ -1,0 +1,86 @@
+练习 1.7
+=============
+
+先将书本 16 页的 ``sqrt`` 函数完整敲下来：
+
+.. literalinclude:: code/p16-sqrt.scm
+
+然后使用 ``sqrt`` 函数进行实验测试：
+
+::
+
+    1 ]=> (load "p16-sqrt.scm")
+
+    ;Loading "p16-sqrt.scm"...
+    ;  Loading "p15-sqrt-iter.scm"...
+    ;    Loading "p15-good-enough.scm"... done
+    ;    Loading "p15-improve.scm"...
+    ;      Loading "p15-average.scm"... done
+    ;    ... done
+    ;  ... done
+    ;... done
+    ;Value: sqrt
+
+    1 ]=> (sqrt 0.00009)        ; 正确答案应该是 9.486832980505138e-3
+    ;Value: .03220324381282134
+
+    
+    1 ]=> (sqrt 900000000000000000000000000000000000000000000000000000000000000000000000000000000000)       ; 死循环
+    ^C
+
+可以发现，对于特别小的数，比如 ``0.00009`` ，书本给出的 ``sqrt`` 并不能计算出正确的答案；
+而对于特别大的数，因为 mit-scheme 实现的小数精度不足以表示两个大数之间的差，所以  ``sqrt`` 会陷入死循环而无法得出正确结果。
+
+要避免这一错误，我们按照练习所说，对 ``good-enough?`` 进行修改：不再检测猜测值 ``guess`` 的平方与 ``x`` 之间的差，而是检测新旧两次猜测值之间的比率，当比率变化非常小时，程序就停止 ``improve`` 。
+
+新的 ``good-enough?`` 定义如下：
+
+.. literalinclude:: code/7-good-enough.scm
+
+使用新的 ``good-enough?`` 重新定义 ``sqrt`` 函数 —— 大部分的代码和原来的一样，只是 ``sqrt-iter`` 和 ``good-enough?`` 两个函数更改了：
+
+.. literalinclude:: code/7-sqrt.scm
+
+新的 ``sqrt`` 函数对于非常小和非常大的值都能给出正确答案：
+
+::
+
+    1 ]=> (load "7-sqrt.scm")
+
+    ;Loading "7-sqrt.scm"...
+    ;  Loading "p16-sqrt.scm"...
+    ;    Loading "p15-sqrt-iter.scm"...
+    ;      Loading "p15-good-enough.scm"... done
+    ;      Loading "p15-improve.scm"...
+    ;        Loading "p15-average.scm"... done
+    ;      ... done
+    ;    ... done
+    ;  ... done
+    ;  Loading "p15-improve.scm"...
+    ;    Loading "p15-average.scm"... done
+    ;  ... done
+    ;  Loading "p15-average.scm"... done
+    ;  Loading "7-good-enough.scm"... done
+    ;... done
+    ;Value: sqrt-iter
+
+    1 ]=> (sqrt 0.00009)
+
+    ;Value: 9.486833049684392e-3
+
+    1 ]=> (sqrt 900000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+
+    ;Value: 9.486982144406554e41
+
+
+.. note:: 在新的 ``sqrt-iter`` 的定义中， ``(improve guess x)`` 被重复调用了多次，这是因为书本到这个练习为止还没有介绍 ``let`` 结构。
+
+    以下是一个使用 ``let`` 结构重写的、无重复调用的 ``sqrt-iter`` ：
+
+    ::
+
+        (define (sqrt-iter old-guess x)
+            (let ((new-guess (improve old-guess x)))
+                (if (good-enough? old-guess new-guess)
+                    new-guess
+                    (sqrt-iter new-guess x))))
