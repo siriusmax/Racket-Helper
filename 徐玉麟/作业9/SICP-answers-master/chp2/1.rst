@@ -1,0 +1,12 @@
+练习 2.1
+===========
+
+根据有理数的负数处理规则：
+
+:math:`\frac{-n}{-d} = \frac{n}{d}`
+
+:math:`\frac{n}{-d} = \frac{-n}{d}`
+
+可以给出题目要求的能处理负数的 ``make-rat`` ：
+
+.. literalinclude:: code/1-make-rat.scm
