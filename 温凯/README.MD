@@ -1,4 +1,5 @@
 tip：去除汉字的正则表达式：`[\u4e00-\u9fa5]+`
+网站：http://tool.oschina.net/regex/
 
 ## Week 7
 对算法还是了解太少。
@@ -45,3 +46,15 @@ racket现在的状态很危险。这门课现在有几个人？
 
 
 第二道题要认识到，在对表达式求值的时候关键在于env中有没有绑定变量的值，而在make-lambda中的parameter参数其实可以自行设定。
+
+## Week 11
+
+第一题，说实话对ambeval仍然了解不够，虽然大概知道是通过succeed和fail函数来实现这些调用的。
+
+在测试用例(let ((k (list (amb 1 2 3) (amb 4 5 6))))
+  (require (> (+ (car k) (car (cdr k))) 7))
+  k)中，一开始总是得到k是void，后来按照标准的ambeval实现，更改了let语句的处理方式就通过了，具体原因仍然不清楚。
+
+这个题是需要支持set!的。
+
+第二题，这个题稍微顺利些，不过还是有些不明白的地方，写在TODO里了。
